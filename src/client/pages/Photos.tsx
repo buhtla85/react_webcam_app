@@ -1,9 +1,12 @@
 import * as React from "react";
+import { Header } from "../Header";
 
 export const PhotosPage = (): JSX.Element => {
     return (
-        <>
-            <h1>Hello from photos page!</h1>
-        </>
+        <div className="text-center">
+            <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+                <Header />
+            </div>
+        </div>
     )
-}
+};
