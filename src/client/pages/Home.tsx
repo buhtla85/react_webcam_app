@@ -1,9 +1,14 @@
 import * as React from "react";
+import { Header } from "../Header";
+import { InputSection } from "../InputSection";
 
 export const HomePage = (): JSX.Element => {
     return (
-        <>
-            <h1>Hello from home page!</h1>
-        </>
+        <div className="text-center">
+            <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+                <Header />
+                <InputSection />
+            </div>
+        </div>
     )
 };
