@@ -19,9 +19,10 @@ router.delete("/photos/:id", (req, res) => {
 
 //create a new entry on home page (inputssection component)
 router.post("/", (req, res) => {
-    res.send("New entry created");
-    console.log("I got a request!");
-    console.log(req.body);
+    //res.send("New entry created");
+    const data: ReqBodyValues = req.body; 
+    console.log(data.mood);
+    res.json(req.body)
 });
 
 export default router;
