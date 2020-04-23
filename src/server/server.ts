@@ -1,8 +1,11 @@
 import * as express from 'express';
 import router from './routes';
 import * as path from "path";
+import { connectDB } from "../server/db/database";
 
 const app = express();
+
+connectDB();
 
 app.use(express.static('public'));
 app.use(express.json()); //parses incoming requests with JSON payloads and is based on body-parser. More info: https://expressjs.com/en/4x/api.html#express.json
