@@ -1,11 +1,13 @@
 import * as React from "react";
 import { InnerContainer } from "./utils/InnerCont";
+import { SingleEntry } from "./SingleEntry";
 
 interface IStateEntries {
     entries: []
 }
+//don't forget to define interface for array values
 
-const defaultIMG = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+const defaultIMG = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"; 
 
 export class DisplayEntries extends React.Component<{}, IStateEntries> {
     constructor(props: any) {
@@ -15,16 +17,24 @@ export class DisplayEntries extends React.Component<{}, IStateEntries> {
         }
     }
 
+    // async componentDidMount() {
+    //     try {
+    //         let data = await fetch("/api/hello");
+    //         let entry = await data.json();
+    //         this.setState({entries: entry});
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
     render() {
         return (
             <InnerContainer>
-                <div className="card-columns">
-                    <div className="card" style={{ width: "18rem"}}>
-                        <img src={defaultIMG} className="card-img-top" alt="..." />
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
+                <div className="container">
+                    <div className="row">
+                        <SingleEntry />
+                        <SingleEntry />
+                        <SingleEntry />
                     </div>
                 </div>
             </InnerContainer>
