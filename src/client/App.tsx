@@ -6,8 +6,8 @@ import { Switch, Route } from "react-router-dom";
 export const App = (): JSX.Element => {
 	return (
 		<Switch>
+			<Route path="/photos/" component={PhotosPage}/>
 			<Route exact path="/" component={HomePage}/>
-			<Route exact path="/photos/" component={PhotosPage}/>
 		</Switch>
 	)
 }
