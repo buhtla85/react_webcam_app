@@ -3,17 +3,28 @@ import { InnerContainer } from "./utils/InnerCont";
 import { SingleEntry } from "./SingleEntry";
 
 interface IStateEntries {
-    entries: []
+    entries: IEntry[]
 }
-//don't forget to define interface for array values
 
-const defaultIMG = "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"; 
+export interface IEntry {
+    mood: string,
+    photo: string
+}
 
 export class DisplayEntries extends React.Component<{}, IStateEntries> {
     constructor(props: any) {
         super(props);
         this.state = {
-            entries: []
+            entries: [{
+                mood: "not found",
+                photo: "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+            }, {
+                mood: "not found",
+                photo: "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+            }, {
+                mood: "not found",
+                photo: "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png"
+            } ]
         }
     }
 
@@ -32,9 +43,11 @@ export class DisplayEntries extends React.Component<{}, IStateEntries> {
             <InnerContainer>
                 <div className="container">
                     <div className="row">
-                        <SingleEntry />
-                        <SingleEntry />
-                        <SingleEntry />
+                        {this.state.entries.map((entry: IEntry, idx: number) => {
+                            return (
+                                <SingleEntry singleEntry={entry} index={idx}/>
+                            )
+                        })}
                     </div>
                 </div>
             </InnerContainer>
