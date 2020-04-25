@@ -8,25 +8,24 @@ interface ReqBodyValues {
     imgSrc: string
 }
 
-//get all photos from db and display them on the photos page
+//get all entries from the DB (and later show them on the http://localhost:3000/photos page)
 router.get('/photos', async (req, res) => {
-    //res.send("Get all entries.");
-    await mySchema.find({}, (err, photoModels) => {
-        if (err) return console.error(err);
-        //console.log(photoModels);
-        //[{ _id: 5ea2ee1bca82181e0c71e83b, mood: 'happy', imgSrc: 'random letters', date: 2020-04-24T13:48:11.594Z, __v: 0 }]
-        const flatPhotos = photoModels.map((photoModel) => {
-            return photoModel.toObject();
+    try {
+        const photos = await mySchema.find();
+        return res.status(200).json({
+            success: true,
+            count: photos.length,
+            data: photos
         });
-        res.send(JSON.stringify(flatPhotos)); 
-    });
-    //res.json(data);
-    //res.send(JSON.parse(JSON.stringify(data)));
-    
-    
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            errorMsg: "Server Error."
+        });
+    } 
 });
 
-//delete a particular entry from db
+//delete a particular entry from the DB
 router.delete("/photos/:id", (req, res) => {
     res.send("Delete a single entry");
 });
@@ -34,16 +33,25 @@ router.delete("/photos/:id", (req, res) => {
 //create a new entry on home page (inputssection component)
 router.post("/", async (req, res) => {
     try {
-        const { mood, imgSrc } = req.body;
-        const dbEntry = new mySchema({ mood, imgSrc });
-        await dbEntry.save();
-        res.status(201).json({
+        //const { mood, imgSrc } = req.body;
+        const dbEntry = await mySchema.create(req.body);
+        //await dbEntry.save();
+        return res.status(201).json({
             success: true,
             data: dbEntry
         }); // res.send - led to an error when user submitted the form (JSON parse, unexcpected character...)
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Server error..")
+    } catch (err) {
+        if (err.name === "ValidationError") {
+            return res.status(400).json({
+                success: false,
+                errorMsg: "Invalid client input"
+            })
+        } else {
+            return res.status(500).json({
+                success: false,
+                errorMsg: "Server Error."
+            }); 
+        }
     }
 });
 
