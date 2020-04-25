@@ -21,7 +21,7 @@ export class InputSection extends React.Component<{}, IState> {
         this.state = {mood: "", imgSrc: "", errMsg: ""}
     }
 
-    myRef: React.RefObject<Webcam> = React.createRef();
+    myRef: React.RefObject<any> = React.createRef(); //this had to be anotated as "any" - <Webcam> type resulted in namespace error
 
     handleMoodInput = (e: React.ChangeEvent<HTMLInputElement>) => this.setState({mood: e.target.value});
 
@@ -45,6 +45,7 @@ export class InputSection extends React.Component<{}, IState> {
             method: "POST",
             headers: {
                 "content-type": "application/json",
+                'Accept': 'application/json, text/plain, */*'
             },
             body: JSON.stringify(postVals)
         }
