@@ -28,15 +28,15 @@ export class DisplayEntries extends React.Component<{}, IStateEntries> {
         }
     }
 
-    // async componentDidMount() {
-    //     try {
-    //         let data = await fetch("/api/hello");
-    //         let entry = await data.json();
-    //         this.setState({entries: entry});
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    async componentDidMount() {
+        try {
+            let hitMyApi = await fetch("/photos");
+            let entry = await hitMyApi.json();
+            console.log(entry);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     render() {
         return (
