@@ -15,6 +15,9 @@ const videoConstraints = {
     facingMode: "user"
 };
 
+//maybe it should be allowed for the user to submit the form even if he/she did not click "capture photo" button, 
+//what if he/she does not want to take photo 
+
 export class InputSection extends React.Component<{}, IState> {
     constructor(props: any) {
         super(props);
