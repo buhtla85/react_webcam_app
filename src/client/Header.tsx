@@ -1,9 +1,13 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-export const Header = (): JSX.Element => {
+interface IHeaderProps {
+    customClass: string
+}
+
+export const Header = (props: IHeaderProps): JSX.Element => {
     return (
-        <header className="masthead mb-auto">
+        <header className={props.customClass}>
             <div className="inner">
                 <h3 className="masthead-brand">PhotoApp</h3>
                     <nav className="nav nav-masthead justify-content-center">
