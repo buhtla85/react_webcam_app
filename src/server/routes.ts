@@ -3,8 +3,8 @@ import { mySchema } from "./db/PhotoModel";
 
 const router = express.Router();
 
-//get all entries from the DB (and later show them on the http://localhost:3000/photos page)
-router.get('/photos', async (req, res) => {
+//get all entries from the DB (and show them on the http://localhost:3000/photos page)
+router.get('/photos', async (req: express.Request, res: express.Response) => {
     try {
         const photos = await mySchema.find();
         return res.status(200).json({
@@ -21,7 +21,7 @@ router.get('/photos', async (req, res) => {
 });
 
 //delete a particular entry from the DB
-router.delete("/photos/:id", async (req, res) => {
+router.delete("/photos/:id", async (req: express.Request, res: express.Response) => {
     try {
         const delEntry = await mySchema.findById(req.params.id);
 
@@ -46,7 +46,7 @@ router.delete("/photos/:id", async (req, res) => {
 });
 
 //create a new entry on home page (inputssection component)
-router.post("/", async (req, res) => {
+router.post("/", async (req: express.Request, res: express.Response) => {
     try {
         const dbEntry = await mySchema.create(req.body);
         return res.status(201).json({
