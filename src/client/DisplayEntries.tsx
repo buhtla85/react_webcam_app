@@ -25,6 +25,7 @@ interface ApiResponse {
 //use the default _id from DB and use it in the app to delete entries
 //also, maybe add spinner component and loading value for the state
 
+
 export class DisplayEntries extends React.Component<{}, IStateEntries> {
     constructor(props: any) {
         super(props);
@@ -45,7 +46,21 @@ export class DisplayEntries extends React.Component<{}, IStateEntries> {
         }
     }
 
-    removeEntry = (idx: number) => () => this.setState({entries: this.state.entries.filter((entry: IEntry, entryIdx: number) => idx !== entryIdx)});
+    removeEntry =  (id: string) => async () => {
+        let options = {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                'Accept': 'application/json, text/plain, */*'
+            }
+        }
+
+        const sendReq = await fetch(`http://localhost:3000/photos/${id}`, options);
+        this.setState({entries: this.state.entries.filter((entry: IEntry) => id !== entry._id)});
+
+        const json = await sendReq.json();
+        console.log(json);
+    }
 
     render() {
         return (
@@ -56,7 +71,7 @@ export class DisplayEntries extends React.Component<{}, IStateEntries> {
                         {this.state.entries.map((entry: IEntry, idx: number) => {
                             return (
                                 <>
-                                    <SingleEntry singleEntry={entry} index={idx} removeEntry={this.removeEntry(idx)} key={idx}/>
+                                    <SingleEntry singleEntry={entry} index={idx} removeEntry={this.removeEntry(entry._id)} key={entry._id}/>
                                 </>
                             )
                         })}
