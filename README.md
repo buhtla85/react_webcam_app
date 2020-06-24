@@ -3,6 +3,11 @@ This is a small TypeScript based React app that has a local API server using Exp
 
 If you want to run it, just clone the repo or download the .zip file, and run `npm run dev`. Also, make sure to create an account on https://www.mongodb.com/ in order to get your MongoURI. 
 
+## Screenshot:
+<img src="images/webcam1.png" width="300">
+
 ## Technologies: 
 React, React Router, Bootstrap 4, Node.js, Express, MongoDB
 
+## Note: 
+The https://github.com/covalence-io/barebones-react-typescript-express repo was used for project setup.
