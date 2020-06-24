@@ -1,6 +1,7 @@
 import * as React from "react";
 import { InnerContainer } from "./utils/InnerCont";
 import Webcam from "react-webcam";
+// import img from "./noimage-cover.jpg";
 
 interface IState {
     mood: string,
@@ -16,7 +17,7 @@ const videoConstraints = {
 };
 
 //maybe it should be allowed for the user to submit the form even if he/she did not click "capture photo" button, 
-//what if he/she does not want to take photo 
+//what if he/she does not want to take photo  https://discountpartner.co.uk/uploads/stores/noimage-cover.jpg
 
 export class InputSection extends React.Component<{}, IState> {
     constructor(props: any) {
