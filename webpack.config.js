@@ -51,6 +51,13 @@ const clientConfig = {
                 'css-loader',
                 'sass-loader',
             ]
+        }, 
+        {
+            test: /\.(png|jpe?g|svg)$/,
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+            }
         }
       ]
     },
