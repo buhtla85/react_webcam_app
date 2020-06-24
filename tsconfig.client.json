@@ -7,6 +7,9 @@
       "jsx": "react",
       "allowSyntheticDefaultImports": true,
       "allowJs": true,
+      "typeRoots": [
+        "custom_typings"
+      ],
       "lib":[
           "es2015", "dom"
       ]
