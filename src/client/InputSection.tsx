@@ -31,7 +31,11 @@ export class InputSection extends React.Component<{}, IState> {
     capturePhoto = () => {
         const scrShoot = this.myRef.current!.getScreenshot();
         console.log(scrShoot);
-        this.setState({imgSrc: scrShoot});
+        if (scrShoot === null) {
+            this.setState({imgSrc: "https://discountpartner.co.uk/uploads/stores/noimage-cover.jpg"});
+        } else {
+            this.setState({imgSrc: scrShoot});
+        }
     }
 
     submitValues = async (e: React.ChangeEvent<HTMLFormElement>) => {
